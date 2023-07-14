@@ -5,45 +5,58 @@
       body {
         background-color: lightblue;
       }
-
       h1 {
         color: white;
         text-align: center;
       }
-
-      p {
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        font-size: 20px;
-        text-align: left;
-      }
     </style>
+    <link rel="stylesheet" href="week1.css" />
   </head>
   <body>
-    <h1>Week1 web</h1>
+    <div>
+      <nav>
+        <ul id="navbar">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+          <li style="float: right">
+            <img
+              class="icon"
+              src="https://upload.wikimedia.org/wikipedia/en/7/74/Deakin_University_Logo_2017.svg"
+            />
+          </li>
+        </ul>
+      </nav>
+    </div>
 
-    <p style="color: rgb(16, 141, 47)">This is a sample paragraph.</p>
+    <section id="main-content">
+      <h1>Week1 Web Practice</h1>
+      <table>
+        <tr>
+          <th>Task</th>
+          <th>Due Date</th>
+          <th>Level</th>
+        </tr>
+        <tr>
+          <td>1.1P</td>
+          <td>11 AUG</td>
+          <td>PASS</td>
+        </tr>
+        <tr>
+          <td>TBC</td>
+          <td>TBC</td>
+          <td>TBC</td>
+        </tr>
+      </table>
 
-    <table>
-      <tr>
-        <th>Example</th>
-        <th>Capabilities</th>
-        <th>Limitations</th>
-      </tr>
-      <tr>
-        <td>a</td>
-        <td>b</td>
-        <td>c</td>
-      </tr>
-      <tr>
-        <td>A</td>
-        <td>B</td>
-        <td>C</td>
-      </tr>
-    </table>
+      <form>
+        <input type="text" placeholder="Please enter your question" />
+        <input type="submit" />
+      </form>
+    </section>
 
-    <form>
-      <input type="text" placeholder="Please enter your question" />
-      <input type="submit" />
-    </form>
+    <footer>
+      <p>This is the practice for week1.</p>
+    </footer>
   </body>
 </html>
