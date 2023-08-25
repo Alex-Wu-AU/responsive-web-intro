@@ -7,8 +7,25 @@
   </head>
   <body>
     <h2>String Methods</h2>
+    <p>The string is:<strong>One Two Three</strong></p>
     <p>The length of the string is:</p>
     <p id="stringlength"></p>
+    <p>Extract a part of a string from position 7:</p>
+    <p id="stringextract"></p>
+    <p>
+      substr() is similar to slice(). The second parameter is the length of
+      extracted part
+    </p>
+    <p id="substr"></p>
+    <p>
+      The replace() method replaces a specified value with another value in a
+      string:
+    </p>
+    <p id="replace"></p>
+    <p>A string is converted to upper case with toUpperCase():</p>
+    <p id="toupper"></p>
+    <p>A string is converted to lower case with toLowerCase():</p>
+    <p id="tolower"></p>
 
     <p>The toString() method covers a number to a string.</p>
     <p id="stringmethod"></p>
@@ -17,8 +34,16 @@
       let x = 123;
       document.getElementById("stringmethod").innerHTML = x.toString();
 
-      let text = "12345678910";
+      let text = "One Two Three";
       document.getElementById("stringlength").innerHTML = text.length;
+      document.getElementById("stringextract").innerHTML = text.slice(7);
+      document.getElementById("substr").innerHTML = text.substr(6, 5);
+      document.getElementById("replace").innerHTML = text.replace(
+        "Two",
+        "Four"
+      );
+      document.getElementById("toupper").innerHTML = text.toUpperCase();
+      document.getElementById("tolower").innerHTML = text.toLowerCase();
     </script>
   </body>
 </html>
