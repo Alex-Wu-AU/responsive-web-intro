@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Using v-model.lazy</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Using v-model.lazy</h1>
+      <label for="username">Username:</label>
+      <input type="text" id="username" v-model.lazy="username" />
+      <p>You entered username: {{ username }}</p>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          username: "",
+        },
+      });
+    </script>
+  </body>
+</html>
