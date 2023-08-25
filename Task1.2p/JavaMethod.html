@@ -6,12 +6,19 @@
     <title>Document</title>
   </head>
   <body>
+    <h2>String Methods</h2>
+    <p>The length of the string is:</p>
+    <p id="stringlength"></p>
+
+    <p>The toString() method covers a number to a string.</p>
+    <p id="stringmethod"></p>
+
     <script>
-      function myFunction() {
-        var x = document.getElementById("demo");
-        x.style.fontSize = "25px";
-        x.style.color = "red";
-      }
+      let x = 123;
+      document.getElementById("stringmethod").innerHTML = x.toString();
+
+      let text = "12345678910";
+      document.getElementById("stringlength").innerHTML = text.length;
     </script>
   </body>
 </html>
