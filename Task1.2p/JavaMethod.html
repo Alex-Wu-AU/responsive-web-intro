@@ -6,34 +6,92 @@
     <title>Document</title>
   </head>
   <body>
-    <h2>String Methods</h2>
-    <p>The string is:<strong>One Two Three</strong></p>
-    <p>The length of the string is:</p>
-    <p id="stringlength"></p>
-    <p>Extract a part of a string from position 7:</p>
-    <p id="stringextract"></p>
-    <p>
-      substr() is similar to slice(). The second parameter is the length of
-      extracted part
-    </p>
-    <p id="substr"></p>
-    <p>
-      The replace() method replaces a specified value with another value in a
-      string:
-    </p>
-    <p id="replace"></p>
-    <p>A string is converted to upper case with toUpperCase():</p>
-    <p id="toupper"></p>
-    <p>A string is converted to lower case with toLowerCase():</p>
-    <p id="tolower"></p>
+    <div>
+      <h2>String Methods</h2>
+      <p>The string is:<strong>One Two Three</strong></p>
+      <p>The length of the string is:</p>
+      <p id="stringlength"></p>
+      <p>Extract a part of a string from position 7:</p>
+      <p id="stringextract"></p>
+      <p>
+        substr() is similar to slice(). The second parameter is the length of
+        extracted part
+      </p>
+      <p id="substr"></p>
+      <p>
+        The replace() method replaces a specified value with another value in a
+        string:
+      </p>
+      <p id="replace"></p>
+      <p>A string is converted to upper case with toUpperCase():</p>
+      <p id="toupper"></p>
+      <p>A string is converted to lower case with toLowerCase():</p>
+      <p id="tolower"></p>
+    </div>
 
-    <p>The toString() method covers a number to a string.</p>
-    <p id="stringmethod"></p>
+    <div>
+      <h2>Number Methods</h2>
+      <p>Floating point arithmetic is not always 100% accurate:</p>
+      <p id="floatingArithmetic1"></p>
+      <p>But it helps to multiply and divide:</p>
+      <p id="floatingArithmetic2"></p>
+      <p>The toString() method covers a number to a string.</p>
+      <p id="tostringmethod"></p>
+      <p>JavaScript objects cannot be compared:</p>
+      <p id="objcomparison"></p>
+    </div>
+    <div>
+      <h2>JavaScript Arrays</h2>
+      <p>The join() method joins array elements into a string.</p>
+      <p>
+        It this example we have used " * " as a separator between the elements:
+      </p>
+      <p id="arrayjoin"></p>
+      <p>The pop() method removes the last element from an array.</p>
+      <p id="arraypop"></p>
+      <p>The push() method appends a new element to an array:</p>
+      <p id="arraypush"></p>
+      <p>
+        The shift() method removes the first element of an array (and "shifts"
+        the other elements to the left):
+      </p>
+      <p id="arrayshift"></p>
+      <p>
+        The unshift() method adds new elements to the beginning of an array:
+      </p>
+      <p id="arrayunshift"></p>
+    </div>
 
+    <div>
+      <h2>JavaScript Dates</h2>
+      <p>
+        new Date() without arguments, creates a date object with the current
+        date and time:
+      </p>
+      <p id="newdate"></p>
+      <p>A date object can be created with a specified date and time:</p>
+      <p id="datestring"></p>
+      <p>6 numbers specify year, month, day, hour, minute and second:</p>
+      <p>Two digit years will be interpreted as 19xx:</p>
+      <p id="date2digit"></p>
+      <p id="date6number"></p>
+      <p>100000000000 milliseconds from January 01 1970 UTC is:</p>
+      <p id="datemillisecond"></p>
+    </div>
+
+    <div>
+      <h2>JavaScript Functions</h2>
+      <p>Invoke (call) a function that converts from Fahrenheit to Celsius:</p>
+      <p id="func1"></p>
+
+      <p>
+        Call a function which performs a calculation and returns the result:
+      </p>
+
+      <p id="func2"></p>
+    </div>
     <script>
-      let x = 123;
-      document.getElementById("stringmethod").innerHTML = x.toString();
-
+      // String Methods
       let text = "One Two Three";
       document.getElementById("stringlength").innerHTML = text.length;
       document.getElementById("stringextract").innerHTML = text.slice(7);
@@ -44,6 +102,62 @@
       );
       document.getElementById("toupper").innerHTML = text.toUpperCase();
       document.getElementById("tolower").innerHTML = text.toLowerCase();
+
+      //Number methods:
+      let a = 123;
+      document.getElementById("tostringmethod").innerHTML = a.toString();
+
+      // x is an object
+      let objx = new Number(500);
+      // y is an object
+      let objy = new Number(500);
+      document.getElementById("objcomparison").innerHTML = objx === objy;
+
+      let x = 0.2 + 0.1;
+      document.getElementById("floatingArithmetic1").innerHTML =
+        "0.2 + 0.1 = " + x;
+      let y = (0.2 * 10 + 0.1 * 10) / 10;
+      document.getElementById("floatingArithmetic2").innerHTML =
+        "0.2 + 0.1 = " + y;
+
+      //Array methods
+      const fruits = ["Banana", "Orange", "Apple", "Mango"];
+      document.getElementById("arrayjoin").innerHTML = fruits.join(" * ");
+      fruits.pop();
+      document.getElementById("arraypop").innerHTML = fruits;
+      fruits.push("Kiwi");
+      document.getElementById("arraypush").innerHTML = fruits;
+      fruits.shift();
+      document.getElementById("arrayshift").innerHTML = fruits;
+      fruits.unshift("Lemon");
+      document.getElementById("arrayunshift").innerHTML = fruits;
+
+      //date methods
+      const da = new Date();
+      document.getElementById("newdate").innerHTML = da;
+      const db = new Date("October 13, 2014 11:13:00");
+      document.getElementById("datestring").innerHTML = db;
+      const dc = new Date(2018, 11, 24, 10, 33, 30);
+      document.getElementById("date6number").innerHTML = dc;
+      const dd = new Date(99, 11, 24);
+      document.getElementById("date2digit").innerHTML = dd;
+      const de = new Date(100000000000);
+      document.getElementById("datemillisecond").innerHTML = de;
+
+      //function methods
+      function toCelsius(f) {
+        return (5 / 9) * (f - 32);
+      }
+
+      let value = toCelsius(77);
+      document.getElementById("func1").innerHTML = value;
+
+      let g = myFunction(4, 3);
+      document.getElementById("func2").innerHTML = g;
+
+      function myFunction(a, b) {
+        return a * b;
+      }
     </script>
   </body>
 </html>
