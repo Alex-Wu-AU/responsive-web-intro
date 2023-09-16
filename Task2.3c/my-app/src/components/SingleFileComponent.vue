@@ -175,6 +175,13 @@
     <!-- c.event[$emit] -->
     <h2>c. Emit a custom event from the component</h2>
     <p>Received from child: {{ childMessage }}</p>
+
+    <!-- 11. Routers -->
+    <!-- Router links for navigation -->
+    <router-link to="/about">About</router-link>
+
+    <!-- Router view to display the current route component -->
+    <router-view></router-view>
   </div>
 </template>
 
