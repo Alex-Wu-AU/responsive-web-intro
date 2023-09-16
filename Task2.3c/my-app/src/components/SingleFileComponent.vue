@@ -75,6 +75,84 @@
 
     <!-- e. v-for with a Component -->
     <h2>e. v-for with a Component</h2>
+    <ul>
+      <!-- Using v-for to iterate and render ColorItem components -->
+      <color-item
+        v-for="(color, index) in colors"
+        :key="index"
+        :color="color"
+      ></color-item>
+    </ul>
+
+    <!-- 7. Event Handling: Listening to Events [v-on:click] -->
+    <h1>7. Event Handling: Listening to Events</h1>
+    <!-- a. Inline Handlers -->
+    <h2>a. Inline Handlers</h2>
+    <!-- a. Inline Event Handler -->
+    <button @click="count++">Add 1</button>
+    <p>Count is: {{ count }}</p>
+
+    <!-- b. Method Handlers -->
+    <h2>b. Method Handlers</h2>
+    <!-- `greet` is the name of the method defined above -->
+    <button @click="greet">Greet</button>
+
+    <!-- 8. Form Input Bindings -->
+    <h1>8. Form Input Bindings</h1>
+    <!-- a. v-model with <input type="text">, <input type="checkbox">, <input type="radio">, <select> and <textarea> -->
+    <h2>
+      a. v-model with input type="text", input type="checkbox", input
+      type="radio", select and textarea
+    </h2>
+    <!-- Text Input -->
+    <label for="username">Username:</label>
+    <input type="text" id="username" v-model="username" />
+    <p>Username: {{ username }}</p>
+
+    <!-- Checkbox -->
+    <label for="subscribe">Subscribe:</label>
+    <input type="checkbox" id="subscribe" v-model="subscribed" />
+    <p>Subscribed: {{ subscribed }}</p>
+
+    <!-- Radio Buttons -->
+    <div>
+      <label for="male">Male:</label>
+      <input type="radio" id="male" value="male" v-model="gender" />
+      <label for="female">Female:</label>
+      <input type="radio" id="female" value="female" v-model="gender" />
+    </div>
+    <p>Gender: {{ gender }}</p>
+
+    <!-- Select Dropdown -->
+    <label for="selectGender">Select Gender:</label>
+    <select id="selectGender" v-model="selectedGender">
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+      <option value="other">Other</option>
+    </select>
+    <p>Selected Gender: {{ selectedGender }}</p>
+
+    <!-- Textarea -->
+    <label for="feedback">Feedback:</label>
+    <textarea id="feedback" v-model="userFeedback"></textarea>
+    <p>Feedback: {{ userFeedback }}</p>
+
+    <!-- b. v-model modifiers [.lazy , .number, .trim] -->
+    <h2>b. v-model modifiers [.lazy , .number, .trim]</h2>
+    <!-- Lazy Modifier -->
+    <label for="lazyInput">Lazy Input:</label>
+    <input type="text" id="lazyInput" v-model.lazy="lazyValue" />
+    <p>Lazy Value: {{ lazyValue }}</p>
+
+    <!-- Number Modifier -->
+    <label for="numberInput">Number Input:</label>
+    <input type="text" id="numberInput" v-model.number="numericValue" />
+    <p>Numeric Value: {{ numericValue }}</p>
+
+    <!-- Trim Modifier -->
+    <label for="trimInput">Trim Input:</label>
+    <input type="text" id="trimInput" v-model.trim="trimmedValue" />
+    <p>Trimmed Value: "{{ trimmedValue }}"</p>
   </div>
 </template>
 
@@ -85,10 +163,24 @@ const incrementCount = () => {
   count.value++; // Access the ref value using .value
 };
 const doubleCount = computed(() => count.value * 2);
+const name = ref("Vue.js");
+
+function greet(event) {
+  alert(`Hello ${name.value}!`);
+  // `event` is the native DOM event
+  if (event) {
+    alert(event.target.tagName);
+  }
+}
 </script>
 
 <script>
+import ColorItem from "./ColorItem.vue";
+
 export default {
+  components: {
+    "color-item": ColorItem,
+  },
   data() {
     return {
       message: "Hello, Vue!",
@@ -114,6 +206,19 @@ export default {
         { id: 3, name: "Charlie", age: 32 },
         { id: 4, name: "David", age: 15 },
       ],
+      colors: ["red", "green", "blue", "yellow", "purple"],
+      buttonClicked: false,
+      // a. v-model with various form elements
+      username: "",
+      subscribed: false,
+      gender: "", // For radio buttons
+      selectedGender: "",
+      userFeedback: "",
+
+      // b. v-model modifiers
+      lazyValue: "",
+      numericValue: "",
+      trimmedValue: "",
     };
   },
   computed: {
@@ -130,6 +235,10 @@ export default {
     },
     toggleActive() {
       this.isActive = !this.isActive; // Toggle the "isActive" property
+    },
+    handleButtonClick() {
+      // Set the buttonClicked data property to true when the button is clicked
+      this.buttonClicked = true;
     },
   },
 };
