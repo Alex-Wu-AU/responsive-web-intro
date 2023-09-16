@@ -153,11 +153,33 @@
     <label for="trimInput">Trim Input:</label>
     <input type="text" id="trimInput" v-model.trim="trimmedValue" />
     <p>Trimmed Value: "{{ trimmedValue }}"</p>
+
+    <!-- 9. Watchers -->
+    <h1>9. Watchers</h1>
+    <p>
+      Ask a yes/no question:
+      <input v-model="question" />
+    </p>
+    <p>{{ answer }}</p>
+
+    <!-- 10. Components -->
+    <h1>10. Components</h1>
+    <!-- a.props -->
+    <h2>a. Use the Component and pass a prop</h2>
+    <ChildComponent :title="parentTitle" @button-click="handleButtonClick2">
+      <!-- b. provide content through a slot -->
+      <h2>b. Slot Content</h2>
+      <p>This is additional content provided through a slot.</p>
+    </ChildComponent>
+
+    <!-- c.event[$emit] -->
+    <h2>c. Emit a custom event from the component</h2>
+    <p>Received from child: {{ childMessage }}</p>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 const count = ref(0);
 const incrementCount = () => {
   count.value++; // Access the ref value using .value
@@ -172,14 +194,30 @@ function greet(event) {
     alert(event.target.tagName);
   }
 }
+const question = ref("");
+const answer = ref("Questions usually contain a question mark. ;-)");
+
+watch(question, async (newQuestion) => {
+  if (newQuestion.indexOf("?") > -1) {
+    answer.value = "Thinking...";
+    try {
+      const res = await fetch("https://yesno.wtf/api");
+      answer.value = (await res.json()).answer;
+    } catch (error) {
+      answer.value = "Error! Could not reach the API. " + error;
+    }
+  }
+});
 </script>
 
 <script>
 import ColorItem from "./ColorItem.vue";
+import ChildComponent from "./ChildComponent.vue";
 
 export default {
   components: {
     "color-item": ColorItem,
+    ChildComponent,
   },
   data() {
     return {
@@ -219,6 +257,10 @@ export default {
       lazyValue: "",
       numericValue: "",
       trimmedValue: "",
+
+      // 10. Components
+      parentTitle: "Hello from parent!",
+      childMessage: "",
     };
   },
   computed: {
@@ -239,6 +281,9 @@ export default {
     handleButtonClick() {
       // Set the buttonClicked data property to true when the button is clicked
       this.buttonClicked = true;
+    },
+    handleButtonClick2(message) {
+      this.childMessage = message;
     },
   },
 };
